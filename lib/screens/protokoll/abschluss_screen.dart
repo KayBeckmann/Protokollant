@@ -124,7 +124,7 @@ class _AbschlussScreenState extends State<AbschlussScreen> {
         Row(
           children: [
             Expanded(
-              child: _SummaryCard(label: 'Anlage / ID', value: _protokoll.schrankId.isEmpty ? '—' : _protokoll.schrankId),
+              child: _SummaryCard(label: 'Bezeichnung', value: _protokoll.schrankId.isEmpty ? '—' : _protokoll.schrankId),
             ),
             const SizedBox(width: 8),
             Expanded(

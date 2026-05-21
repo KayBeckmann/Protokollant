@@ -87,7 +87,7 @@ class _NewProtokollScreenState extends State<NewProtokollScreen> {
             const SizedBox(height: 12),
             TextFormField(
               controller: _schrankCtrl,
-              decoration: const InputDecoration(labelText: 'SCHRANK-ID'),
+              decoration: const InputDecoration(labelText: 'BEZEICHNUNG'),
               validator: (v) => (v == null || v.trim().isEmpty) ? 'Pflichtfeld' : null,
               style: GoogleFonts.ibmPlexSans(fontSize: 16),
             ),

@@ -27,10 +27,10 @@ class PdfService {
     }
 
     pdf.addPage(
-      pw.Page(
+      pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
         margin: const pw.EdgeInsets.all(24),
-        build: (ctx) => _buildPage1(p, prueferName, font, fontBold, sigImage),
+        build: (ctx) => _buildPage1(ctx, p, prueferName, font, fontBold, sigImage),
       ),
     );
 
@@ -50,7 +50,8 @@ class PdfService {
     );
   }
 
-  static pw.Widget _buildPage1(
+  static List<pw.Widget> _buildPage1(
+    pw.Context ctx,
     Protokoll p,
     String prueferName,
     pw.Font font,
@@ -59,20 +60,15 @@ class PdfService {
   ) {
     final date = '${p.datum.day.toString().padLeft(2, '0')}.${p.datum.month.toString().padLeft(2, '0')}.${p.datum.year}';
 
-    return pw.Column(
-      crossAxisAlignment: pw.CrossAxisAlignment.start,
-      children: [
-        _header(p, prueferName, date, font, fontBold),
-        pw.SizedBox(height: 16),
-        _checklistSection(p, font, fontBold),
-        pw.SizedBox(height: 16),
-        if (p.bemerkungen.isNotEmpty) _bemerkungenSection(p.bemerkungen, font, fontBold),
-        pw.Spacer(),
-        _freigabeSection(p.freigegeben, font, fontBold),
-        pw.SizedBox(height: 12),
-        if (sigImage != null) _signatureSection(sigImage, font, fontBold),
-      ],
-    );
+    return [
+      _header(p, prueferName, date, font, fontBold),
+      pw.SizedBox(height: 16),
+      _checklistSection(p, font, fontBold),
+      pw.SizedBox(height: 16),
+      if (p.bemerkungen.isNotEmpty) _bemerkungenSection(p.bemerkungen, font, fontBold),
+      if (p.bemerkungen.isNotEmpty) pw.SizedBox(height: 16),
+      _sigAndFreigabeRow(p.freigegeben, sigImage, font, fontBold),
+    ];
   }
 
   static pw.Widget _header(Protokoll p, String prueferName, String date, pw.Font font, pw.Font fontBold) {
@@ -196,44 +192,75 @@ class PdfService {
     );
   }
 
-  static pw.Widget _freigabeSection(bool? freigegeben, pw.Font font, pw.Font fontBold) {
+  static pw.Widget _sigAndFreigabeRow(
+    bool? freigegeben,
+    pw.MemoryImage? sigImage,
+    pw.Font font,
+    pw.Font fontBold,
+  ) {
     final label = freigegeben == true
-        ? 'Schrank zur Auslieferung FREIGEGEBEN'
+        ? 'Schrank zur Auslieferung\nFREIGEGEBEN'
         : freigegeben == false
-            ? 'Schrank zur Auslieferung NICHT FREIGEGEBEN'
-            : 'Keine Freigabeentscheidung getroffen';
+            ? 'Schrank zur Auslieferung\nNICHT FREIGEGEBEN'
+            : 'Keine Freigabe-\nentscheidung getroffen';
     final color = freigegeben == true ? _kGreen : freigegeben == false ? _kRed : _kGray;
 
-    return pw.Container(
-      padding: const pw.EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: pw.BoxDecoration(
-        border: pw.Border.all(color: color, width: 1.5),
-        borderRadius: pw.BorderRadius.circular(4),
-      ),
-      child: pw.Text(
-        label,
-        style: pw.TextStyle(font: fontBold, fontSize: 12, color: color),
-      ),
-    );
-  }
+    final sigWidget = sigImage != null
+        ? pw.Column(
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            children: [
+              pw.Text('UNTERSCHRIFT',
+                  style: pw.TextStyle(font: fontBold, fontSize: 9, color: _kSecondary, letterSpacing: 0.8)),
+              pw.SizedBox(height: 4),
+              pw.Container(
+                height: 80,
+                decoration: pw.BoxDecoration(
+                  border: pw.Border.all(color: _kOutline, width: 0.5),
+                  borderRadius: pw.BorderRadius.circular(2),
+                  color: PdfColors.white,
+                ),
+                child: pw.Image(sigImage, fit: pw.BoxFit.contain),
+              ),
+            ],
+          )
+        : pw.Container(
+            height: 80,
+            decoration: pw.BoxDecoration(
+              border: pw.Border.all(color: _kOutline, width: 0.5),
+              borderRadius: pw.BorderRadius.circular(2),
+            ),
+            child: pw.Center(
+              child: pw.Text('Keine Unterschrift',
+                  style: pw.TextStyle(font: font, fontSize: 9, color: _kGray)),
+            ),
+          );
 
-  static pw.Widget _signatureSection(pw.MemoryImage sigImage, pw.Font font, pw.Font fontBold) {
-    return pw.Column(
+    return pw.Row(
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
-        pw.Text('UNTERSCHRIFT', style: pw.TextStyle(font: fontBold, fontSize: 9, color: _kSecondary, letterSpacing: 0.8)),
-        pw.SizedBox(height: 4),
-        pw.Container(
-          height: 80,
-          decoration: pw.BoxDecoration(
-            border: pw.Border.all(color: _kOutline, width: 0.5),
-            borderRadius: pw.BorderRadius.circular(2),
+        pw.Expanded(
+          flex: 3,
+          child: sigWidget,
+        ),
+        pw.SizedBox(width: 12),
+        pw.Expanded(
+          flex: 2,
+          child: pw.Container(
+            padding: const pw.EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            decoration: pw.BoxDecoration(
+              border: pw.Border.all(color: color, width: 1.5),
+              borderRadius: pw.BorderRadius.circular(4),
+            ),
+            child: pw.Text(
+              label,
+              style: pw.TextStyle(font: fontBold, fontSize: 11, color: color),
+            ),
           ),
-          child: pw.Image(sigImage, fit: pw.BoxFit.contain),
         ),
       ],
     );
   }
+
 
   static pw.Widget _buildPage2(Protokoll p, pw.Font font, pw.Font fontBold) {
     return pw.Column(
