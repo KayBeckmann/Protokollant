@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inspection Protocol - Cabinet Inspector Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#cfdce4",
+                        "surface-tint": "#27609d",
+                        "surface-container": "#e3f0f8",
+                        "on-surface": "#111d23",
+                        "tertiary-fixed": "#ffdbc8",
+                        "surface": "#f4faff",
+                        "outline": "#727781",
+                        "on-tertiary-fixed": "#321300",
+                        "inverse-surface": "#263238",
+                        "tertiary-container": "#793701",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#48626e",
+                        "on-primary-container": "#8abcff",
+                        "secondary-container": "#cbe7f5",
+                        "tertiary": "#572500",
+                        "inverse-primary": "#a3c9ff",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#e6f3fb",
+                        "background": "#f4faff",
+                        "surface-variant": "#d7e4ec",
+                        "surface-bright": "#f4faff",
+                        "primary-fixed-dim": "#a3c9ff",
+                        "on-primary-fixed": "#001c38",
+                        "secondary-fixed": "#cbe7f5",
+                        "on-secondary-container": "#4e6874",
+                        "primary-fixed": "#d3e4ff",
+                        "primary-container": "#004b87",
+                        "on-primary-fixed-variant": "#004882",
+                        "outline-variant": "#c2c6d1",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#003461",
+                        "on-tertiary-container": "#ffa46a",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#ffb68b",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#304a55",
+                        "on-background": "#111d23",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#e9f6fd",
+                        "surface-container-high": "#ddeaf2",
+                        "surface-container-highest": "#d7e4ec",
+                        "secondary-fixed-dim": "#afcbd8",
+                        "on-surface-variant": "#424750",
+                        "on-secondary-fixed": "#021f29",
+                        "on-tertiary-fixed-variant": "#753400",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "8px",
+                        "xl": "32px",
+                        "stack_gap": "12px",
+                        "sm": "12px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "edge_margin": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["IBM Plex Sans"],
+                        "label-caps": ["IBM Plex Sans"],
+                        "headline-md": ["IBM Plex Sans"],
+                        "status-label": ["IBM Plex Sans"],
+                        "headline-lg-mobile": ["IBM Plex Sans"],
+                        "headline-lg": ["IBM Plex Sans"],
+                        "body-md": ["IBM Plex Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "status-label": ["13px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        @media print {
+            body { background: white; }
+            .no-print { display: none !important; }
+            .a4-page { 
+                box-shadow: none !important; 
+                margin: 0 !important;
+                width: 210mm;
+                height: 297mm;
+            }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            padding: 20mm;
+            margin: 2rem auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: 1fr 140px;
+            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 4px 0;
+        }
+        .signature-pad {
+            background-image: radial-gradient(#d1d5db 0.5px, transparent 0.5px);
+            background-size: 10px 10px;
+        }
+    </style>
+</head>
+<body class="bg-surface-dim font-body-md text-on-surface">
+<!-- Top Navigation Bar (Shared Component) -->
+<header class="no-print bg-surface border-b border-outline-variant flex justify-between items-center w-full px-edge_margin h-14 sticky top-0 z-50">
+<div class="font-headline-md text-headline-md font-bold text-primary">Cabinet Inspector Pro</div>
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-variant p-2 rounded-full transition-colors duration-200">file_download</button>
+<button class="material-symbols-outlined text-primary hover:bg-surface-variant p-2 rounded-full transition-colors duration-200" onclick="window.print()">print</button>
+<button class="material-symbols-outlined text-primary hover:bg-surface-variant p-2 rounded-full transition-colors duration-200">more_vert</button>
+</div>
+</header>
+<main class="flex flex-col items-center">
+<!-- DIN A4 Protocol Page -->
+<div class="a4-page border border-outline-variant">
+<!-- Header Section -->
+<div class="flex justify-between items-start mb-lg border-b-2 border-primary pb-md">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary mb-1">Official Inspection Report</h1>
+<div class="flex gap-xl text-on-surface-variant">
+<div>
+<p class="font-label-caps text-label-caps uppercase">Project ID</p>
+<p class="font-body-lg text-body-lg text-on-surface font-bold">SC-4092-A</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps uppercase">Date</p>
+<p class="font-body-lg text-body-lg text-on-surface">Oct 24, 2023</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps uppercase">Inspector</p>
+<p class="font-body-lg text-body-lg text-on-surface">Marcus Thorne</p>
+</div>
+</div>
+</div>
+<div class="text-right">
+<div class="bg-primary-container text-on-primary-container px-md py-sm rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-headline-md text-headline-md">PASSED</span>
+</div>
+</div>
+</div>
+<!-- Content Container -->
+<div class="flex-grow overflow-hidden flex flex-col">
+<!-- Checklist Header -->
+<div class="checklist-grid bg-surface-container-high px-md py-base mb-sm">
+<span class="font-label-caps text-label-caps uppercase">Inspection Point</span>
+<div class="grid grid-cols-3 text-center">
+<span class="font-label-caps text-label-caps">PASS</span>
+<span class="font-label-caps text-label-caps">FAIL</span>
+<span class="font-label-caps text-label-caps">N/A</span>
+</div>
+</div>
+<!-- Scrollable/Flowing Checklist Content -->
+<div class="space-y-lg flex-grow">
+<!-- Section: Electrical -->
+<section>
+<h2 class="bg-surface-container-low px-md py-base font-label-caps text-label-caps text-primary border-l-4 border-primary mb-xs">ELECTRICAL SYSTEM (1-8)</h2>
+<div class="space-y-0">
+<div class="checklist-grid px-md">
+<span class="font-body-md text-body-md">01. Earth bonding continuity within spec</span>
+<div class="grid grid-cols-3 text-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span></span>
+<span></span>
+</div>
+</div>
+<div class="checklist-grid px-md">
+<span class="font-body-md text-body-md">02. Insulation resistance test (&gt; 500MΩ)</span>
+<div class="grid grid-cols-3 text-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span></span>
+<span></span>
+</div>
+</div>
+<div class="checklist-grid px-md">
+<span class="font-body-md text-body-md">03. Circuit breaker rating verification</span>
+<div class="grid grid-cols-3 text-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span></span>
+<span></span>
+</div>
+</div>
+<div class="checklist-grid px-md">
+<span class="font-body-md text-body-md">04. Labeling of all internal wiring</span>
+<div class="grid grid-cols-3 text-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span></span>
+<span></span>
+</div>
+</div>
+<div class="checklist-grid px-md">
+<span class="font-body-md text-body-md">05. Wire ferrule crimping integrity</span>
+<div class="grid grid-cols-3 text-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span></span>
+<span></span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Mechanical -->
+<section>
+<h2 class="bg-surface-container-low px-md py-base font-label-caps text-label-caps text-primary border-l-4 border-primary mb-xs">MECHANICAL &amp; ENCLOSURE (9-18)</h2>
+<div class="space-y-0">
+<div class="checklist-grid px-md">
+<span class="font-body-md text-body-md">09. Door gasket compression and IP rating seal</span>
+<div class="grid grid-cols-3 text-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span></span>
+<span></span>
+</div>
+</div>
+<div class="checklist-grid px-md">
+<span class="font-body-md text-body-md">10. Hinge alignment and smooth operation</span>
+<div class="grid grid-cols-3 text-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span></span>
+<span></span>
+</div>
+</div>
+<div class="checklist-grid px-md">
+<span class="font-body-md text-body-md">11. DIN rail mounting stability</span>
+<div class="grid grid-cols-3 text-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span></span>
+<span></span>
+</div>
+</div>
+<div class="checklist-grid px-md">
+<span class="font-body-md text-body-md">12. Cable entry gland torque check</span>
+<div class="grid grid-cols-3 text-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span></span>
+<span></span>
+</div>
+</div>
+<div class="checklist-grid px-md">
+<span class="font-body-md text-body-md">13. External paint finish/corrosion check</span>
+<div class="grid grid-cols-3 text-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span></span>
+<span></span>
+</div>
+</div>
+<div class="checklist-grid px-md">
+<span class="font-body-md text-body-md">14. Internal ventilation fan operation</span>
+<div class="grid grid-cols-3 text-center">
+<span></span>
+<span></span>
+<span class="material-symbols-outlined text-outline">radio_button_checked</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Documentation -->
+<section>
+<h2 class="bg-surface-container-low px-md py-base font-label-caps text-label-caps text-primary border-l-4 border-primary mb-xs">DOCUMENTATION (19-23)</h2>
+<div class="space-y-0">
+<div class="checklist-grid px-md">
+<span class="font-body-md text-body-md">19. Circuit diagram included in pocket</span>
+<div class="grid grid-cols-3 text-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span></span>
+<span></span>
+</div>
+</div>
+<div class="checklist-grid px-md">
+<span class="font-body-md text-body-md">20. Bill of Materials (BOM) verification</span>
+<div class="grid grid-cols-3 text-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span></span>
+<span></span>
+</div>
+</div>
+<div class="checklist-grid px-md">
+<span class="font-body-md text-body-md">21. CE / UL marking application</span>
+<div class="grid grid-cols-3 text-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span></span>
+<span></span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Footer / Signature Area -->
+<div class="mt-xl pt-md border-t border-outline-variant grid grid-cols-2 gap-xl">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-xs">INSPECTOR SIGNATURE</p>
+<div class="signature-pad h-24 border border-outline-variant rounded flex items-center justify-center relative">
+<img alt="Digital Signature" class="max-h-20 mix-blend-multiply opacity-80" data-alt="A clean, professional digital ink signature written in a flowing cursive style on a plain white background. The signature is rendered in a sharp navy blue ink, suggesting a formal legal or professional document authorization. The lighting is perfectly flat and bright, mimicking a scanned document aesthetic within a modern industrial software environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJN-OMDj2422daIGxE1-tAomywSvka1tLCY6qpojJb7ZJhxN-YAOho_lfWbGOiKB7HYPvTCo3Dj0537nnvVIDf10IoiIEQ6YF_LVgvK5R1WEkOIPSNIDcaZu6rGFeK3ztxjXQ9-4V3Ny5E-LC75eF_xJlOfmZmE5ePrdI2SB5wirGsg8k5-ZHzcjrpouLekMIK8qXz9JuxhqoxEg9Zw3SdDQNuGaJ9l-E0tt_zEjIwST6QrtVAFZxd4d3z3wGHNDG5tcyA0lx4PIie"/>
+<span class="absolute bottom-1 right-2 text-[10px] text-on-surface-variant font-mono">ID: MT-8829-AUTH</span>
+</div>
+<div class="flex justify-between mt-xs">
+<span class="text-[10px] text-on-surface-variant italic">Digitally verified via InspectorPro Blockchain</span>
+<span class="text-[10px] text-on-surface-variant font-bold">2023-10-24 14:22:11 UTC</span>
+</div>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-xs">SUMMARY OF FINDINGS</p>
+<div class="p-sm bg-surface-container rounded border border-outline-variant min-h-[96px]">
+<p class="text-body-md">All electrical tests passed within threshold. Enclosure shows minor paint scratch on rear panel (non-critical). Ventilation omitted per customer request (N/A). System ready for deployment.</p>
+</div>
+</div>
+</div>
+<!-- Page Numbering -->
+<div class="absolute bottom-4 left-0 right-0 text-center text-[10px] text-on-surface-variant">
+                Page 1 of 1 — Cabinet Inspector Pro — Internal Document Protocol
+            </div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Shared Component - Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-2 bg-surface border-t border-outline-variant z-50">
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-6 py-1 scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+<span class="font-label-caps text-label-caps">Inspection</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-transform">
+<span class="material-symbols-outlined" data-icon="straighten">straighten</span>
+<span class="font-label-caps text-label-caps">Measurements</span>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for checklist items
+        document.querySelectorAll('.checklist-grid').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                if (!window.matchMedia("(print)").matches) {
+                    item.style.backgroundColor = 'var(--surface-container-low)';
+                }
+            });
+            item.addEventListener('mouseleave', () => {
+                if (!item.classList.contains('bg-surface-container-high')) {
+                    item.style.backgroundColor = 'transparent';
+                }
+            });
+        });
+    </script>
+</body></html>

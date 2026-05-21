@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cabinet Inspector Pro - RCD Measurement Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-dim": "#cfdce4",
+                      "surface-tint": "#27609d",
+                      "surface-container": "#e3f0f8",
+                      "on-surface": "#111d23",
+                      "tertiary-fixed": "#ffdbc8",
+                      "surface": "#f4faff",
+                      "outline": "#727781",
+                      "on-tertiary-fixed": "#321300",
+                      "inverse-surface": "#263238",
+                      "tertiary-container": "#793701",
+                      "on-secondary": "#ffffff",
+                      "secondary": "#48626e",
+                      "on-primary-container": "#8abcff",
+                      "secondary-container": "#cbe7f5",
+                      "tertiary": "#572500",
+                      "inverse-primary": "#a3c9ff",
+                      "on-error": "#ffffff",
+                      "inverse-on-surface": "#e6f3fb",
+                      "background": "#f4faff",
+                      "surface-variant": "#d7e4ec",
+                      "surface-bright": "#f4faff",
+                      "primary-fixed-dim": "#a3c9ff",
+                      "on-primary-fixed": "#001c38",
+                      "secondary-fixed": "#cbe7f5",
+                      "on-secondary-container": "#4e6874",
+                      "primary-fixed": "#d3e4ff",
+                      "primary-container": "#004b87",
+                      "on-primary-fixed-variant": "#004882",
+                      "outline-variant": "#c2c6d1",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "primary": "#003461",
+                      "on-tertiary-container": "#ffa46a",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed-dim": "#ffb68b",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed-variant": "#304a55",
+                      "on-background": "#111d23",
+                      "error": "#ba1a1a",
+                      "surface-container-low": "#e9f6fd",
+                      "surface-container-high": "#ddeaf2",
+                      "surface-container-highest": "#d7e4ec",
+                      "secondary-fixed-dim": "#afcbd8",
+                      "on-surface-variant": "#424750",
+                      "on-secondary-fixed": "#021f29",
+                      "on-tertiary-fixed-variant": "#753400",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "xs": "8px",
+                      "xl": "32px",
+                      "stack_gap": "12px",
+                      "sm": "12px",
+                      "md": "16px",
+                      "lg": "24px",
+                      "edge_margin": "16px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "body-lg": ["IBM Plex Sans"],
+                      "label-caps": ["IBM Plex Sans"],
+                      "headline-md": ["IBM Plex Sans"],
+                      "status-label": ["IBM Plex Sans"],
+                      "headline-lg-mobile": ["IBM Plex Sans"],
+                      "headline-lg": ["IBM Plex Sans"],
+                      "body-md": ["IBM Plex Sans"]
+              },
+              "fontSize": {
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "status-label": ["13px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; }
+            .a4-page {
+                width: 210mm;
+                height: 297mm;
+                padding: 20mm;
+                margin: 0;
+                box-shadow: none;
+                border: none;
+            }
+        }
+        .a4-page {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            margin: 2rem auto;
+            padding: 20mm;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .table-border {
+            border: 1px solid #E0E4E7;
+        }
+        .row-alt:nth-child(even) {
+            background-color: #f8fafc;
+        }
+    </style>
+</head>
+<body class="bg-surface-dim font-body-md text-on-surface flex flex-col items-center">
+<!-- Top Navigation Bar (Shared Component Strategy) -->
+<header class="no-print w-full bg-surface border-b border-outline-variant flex justify-between items-center px-edge_margin h-14 sticky top-0 z-50">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-bold text-primary">Cabinet Inspector Pro</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-variant p-2 rounded transition-colors duration-200" title="Download PDF">
+<span class="material-symbols-outlined text-primary">file_download</span>
+</button>
+<button class="hover:bg-surface-variant p-2 rounded transition-colors duration-200" onclick="window.print()" title="Print Document">
+<span class="material-symbols-outlined text-primary">print</span>
+</button>
+<button class="hover:bg-surface-variant p-2 rounded transition-colors duration-200">
+<span class="material-symbols-outlined text-primary">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas (A4 Protocol) -->
+<main class="w-full flex justify-center py-8">
+<article class="a4-page flex flex-col">
+<!-- Protocol Header -->
+<div class="flex justify-between items-start border-b-2 border-primary pb-6 mb-8">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary uppercase tracking-tight">RCD Measurement Protocol</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1">Inspection Standard: DIN VDE 0100-600</p>
+</div>
+<div class="text-right">
+<p class="font-label-caps text-label-caps text-primary">Project ID</p>
+<p class="font-headline-md text-headline-md font-bold text-on-surface">PRJ-2024-8842-TX</p>
+<p class="font-body-md text-on-surface-variant mt-1">Date: May 24, 2024</p>
+</div>
+</div>
+<!-- Page Meta Info -->
+<div class="flex justify-between items-center mb-6">
+<div class="flex gap-4">
+<div class="bg-surface-container px-4 py-2 rounded-lg border border-outline-variant">
+<p class="font-label-caps text-label-caps text-on-surface-variant">Sheet Number</p>
+<p class="font-body-lg text-body-lg font-bold">02 / 12</p>
+</div>
+<div class="bg-surface-container px-4 py-2 rounded-lg border border-outline-variant">
+<p class="font-label-caps text-label-caps text-on-surface-variant">Test Instrument</p>
+<p class="font-body-lg text-body-lg">Fluke 1664 FC (SN: 99210)</p>
+</div>
+</div>
+<div class="text-right">
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-status-label text-status-label">SECTION: RCD VERIFICATION</span>
+</div>
+</div>
+<!-- Measurements Table -->
+<section class="flex-grow">
+<table class="w-full text-left table-border border-collapse">
+<thead>
+<tr class="bg-secondary text-on-secondary">
+<th class="p-3 font-label-caps text-label-caps border-r border-outline-variant/30">RCD Name / ID</th>
+<th class="p-3 font-label-caps text-label-caps border-r border-outline-variant/30">Trip Time (ms)</th>
+<th class="p-3 font-label-caps text-label-caps border-r border-outline-variant/30">Trip Current (mA)</th>
+<th class="p-3 font-label-caps text-label-caps">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-on-surface">
+<!-- Table Rows -->
+<tr class="row-alt border-b border-outline-variant">
+<td class="p-3 border-r border-outline-variant font-bold">RCD-01 (Main Cabinet)</td>
+<td class="p-3 border-r border-outline-variant font-mono">24.2 ms</td>
+<td class="p-3 border-r border-outline-variant font-mono">21.5 mA</td>
+<td class="p-3">
+<div class="flex items-center gap-2 text-green-700">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="font-status-label text-status-label uppercase">Bestanden (Pass)</span>
+</div>
+</td>
+</tr>
+<tr class="row-alt border-b border-outline-variant">
+<td class="p-3 border-r border-outline-variant font-bold">RCD-02 (Kitchen Circuit)</td>
+<td class="p-3 border-r border-outline-variant font-mono">18.5 ms</td>
+<td class="p-3 border-r border-outline-variant font-mono">22.1 mA</td>
+<td class="p-3">
+<div class="flex items-center gap-2 text-green-700">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="font-status-label text-status-label uppercase">Bestanden (Pass)</span>
+</div>
+</td>
+</tr>
+<tr class="row-alt border-b border-outline-variant">
+<td class="p-3 border-r border-outline-variant font-bold">RCD-03 (Workshop A)</td>
+<td class="p-3 border-r border-outline-variant font-mono">290.4 ms</td>
+<td class="p-3 border-r border-outline-variant font-mono">31.2 mA</td>
+<td class="p-3">
+<div class="flex items-center gap-2 text-error">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+<span class="font-status-label text-status-label uppercase">Durchgefallen (Fail)</span>
+</div>
+</td>
+</tr>
+<tr class="row-alt border-b border-outline-variant">
+<td class="p-3 border-r border-outline-variant font-bold">RCD-04 (Outdoor Lights)</td>
+<td class="p-3 border-r border-outline-variant font-mono">32.1 ms</td>
+<td class="p-3 border-r border-outline-variant font-mono">19.8 mA</td>
+<td class="p-3">
+<div class="flex items-center gap-2 text-green-700">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="font-status-label text-status-label uppercase">Bestanden (Pass)</span>
+</div>
+</td>
+</tr>
+<tr class="row-alt border-b border-outline-variant">
+<td class="p-3 border-r border-outline-variant font-bold">RCD-05 (Server Room)</td>
+<td class="p-3 border-r border-outline-variant font-mono">--</td>
+<td class="p-3 border-r border-outline-variant font-mono">--</td>
+<td class="p-3">
+<div class="flex items-center gap-2 text-outline">
+<span class="material-symbols-outlined text-[18px]">block</span>
+<span class="font-status-label text-status-label uppercase">N/A</span>
+</div>
+</td>
+</tr>
+<tr class="row-alt border-b border-outline-variant">
+<td class="p-3 border-r border-outline-variant font-bold">RCD-06 (HVAC Unit 1)</td>
+<td class="p-3 border-r border-outline-variant font-mono">21.8 ms</td>
+<td class="p-3 border-r border-outline-variant font-mono">24.5 mA</td>
+<td class="p-3">
+<div class="flex items-center gap-2 text-green-700">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="font-status-label text-status-label uppercase">Bestanden (Pass)</span>
+</div>
+</td>
+</tr>
+<!-- Empty rows for spacing/manual entry if printed -->
+<tr class="h-10 border-b border-outline-variant">
+<td class="p-3 border-r border-outline-variant"></td><td class="p-3 border-r border-outline-variant"></td><td class="p-3 border-r border-outline-variant"></td><td class="p-3"></td>
+</tr>
+<tr class="h-10 border-b border-outline-variant">
+<td class="p-3 border-r border-outline-variant"></td><td class="p-3 border-r border-outline-variant"></td><td class="p-3 border-r border-outline-variant"></td><td class="p-3"></td>
+</tr>
+</tbody>
+</table>
+<!-- Reference Standards Note -->
+<div class="mt-8 p-4 bg-surface-container-low border border-outline-variant/50 rounded flex gap-4">
+<span class="material-symbols-outlined text-primary">info</span>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface">Technical Reference</p>
+<p class="text-xs text-on-surface-variant leading-relaxed">Limit values for RCD Type A (30mA): Max trip time &lt; 300ms at 1x IΔn. Measurement performed with PE-conductor continuity verified prior to RCD testing. Professional grade precision ±2% verified.</p>
+</div>
+</div>
+</section>
+<!-- Signature Section (Bottom of A4) -->
+<footer class="mt-auto pt-12">
+<div class="grid grid-cols-2 gap-12">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-2">Technician Signature</p>
+<div class="h-24 bg-surface-container border border-outline-variant relative flex items-center justify-center overflow-hidden">
+<img alt="Digital Signature" class="opacity-80 max-h-full mix-blend-multiply" data-alt="A clean, minimalist digital signature rendered in black ink on a textured light gray paper background. The signature is flowing and professional, appearing at the bottom of a technical document. The lighting is even and soft, emphasizing a formal, corporate, and trustworthy industrial certification aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC38GFYZU8i4_xymMY1leqVrPxF5jIll3tB0VJGb36cfXdU84ixvjhIStmfl41GfRwLkDCwvVSfygaSNt4L6-z648zYtQTd92PtQJeIxqFbTmne-x0Ubgzog6KiF9Fxp_kBiLSFlbDa88xiW5e5IochabzofR9rlbZm7It5NBZgtlHV69UXmgISPi_YrzFhLw6A14nsKck93EaotcdqDypBu0sjTgf1NSScBUKeuvLkO4Ah-K3HgfRkQfHJqLjAQ0f5kxaik8J6g4f7"/>
+<span class="absolute bottom-1 left-2 text-[10px] text-on-surface-variant font-mono">TS: 2024-05-24 14:12:05 UTC</span>
+</div>
+<p class="mt-2 text-sm font-bold">M. Schwarz, Senior Inspector</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-2">Customer Approval</p>
+<div class="h-24 bg-surface-container-lowest border border-outline-variant border-dashed flex items-center justify-center">
+<span class="text-outline-variant text-xs italic">Place stamp or signature here</span>
+</div>
+<p class="mt-2 text-sm">Industrial Site Manager</p>
+</div>
+</div>
+<div class="flex justify-between items-center mt-12 pt-4 border-t border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-bold text-primary">Cabinet Inspector Pro</span>
+<span class="text-xs text-outline font-mono">v4.2.1-PRO</span>
+</div>
+<div class="text-[10px] text-on-surface-variant font-mono uppercase tracking-widest">
+                        Document generated securely • No: CISP-552-X9
+                    </div>
+</div>
+</footer>
+</article>
+</main>
+<!-- Bottom Navigation (Shared Component Strategy) -->
+<nav class="no-print fixed bottom-0 left-0 w-full bg-surface dark:bg-inverse-surface flex justify-around items-center px-4 py-2 border-t border-outline-variant z-50">
+<div class="flex flex-col items-center justify-center text-on-surface-variant cursor-pointer hover:text-primary transition-transform scale-95 active:scale-90">
+<span class="material-symbols-outlined">fact_check</span>
+<span class="font-label-caps text-label-caps">Inspection</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-6 py-1 cursor-pointer transition-transform scale-95 active:scale-90">
+<span class="material-symbols-outlined">straighten</span>
+<span class="font-label-caps text-label-caps">Measurements</span>
+</div>
+</nav>
+<script>
+        // Micro-interaction for table rows
+        document.querySelectorAll('.row-alt').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.classList.add('bg-primary-container/5');
+            });
+            row.addEventListener('mouseleave', () => {
+                row.classList.remove('bg-primary-container/5');
+            });
+        });
+    </script>
+</body></html>

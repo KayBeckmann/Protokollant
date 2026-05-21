@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="antialiased text-on-surface bg-surface" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Schaltschrankprüfung - Hauptcheckliste</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#4e6874",
+                        "on-tertiary": "#ffffff",
+                        "background": "#f4faff",
+                        "on-tertiary-fixed-variant": "#753400",
+                        "primary": "#003461",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb68b",
+                        "outline-variant": "#c2c6d1",
+                        "surface-container-low": "#e9f6fd",
+                        "surface": "#f4faff",
+                        "tertiary-fixed": "#ffdbc8",
+                        "on-secondary-fixed": "#021f29",
+                        "on-tertiary-container": "#ffa46a",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#424750",
+                        "inverse-primary": "#a3c9ff",
+                        "surface-container-high": "#ddeaf2",
+                        "tertiary-container": "#793701",
+                        "primary-fixed-dim": "#a3c9ff",
+                        "primary-container": "#004b87",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#004882",
+                        "on-primary-fixed": "#001c38",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#27609d",
+                        "secondary-container": "#cbe7f5",
+                        "surface-variant": "#d7e4ec",
+                        "outline": "#727781",
+                        "secondary-fixed-dim": "#afcbd8",
+                        "on-primary-container": "#8abcff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#304a55",
+                        "surface-dim": "#cfdce4",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#cbe7f5",
+                        "tertiary": "#572500",
+                        "on-background": "#111d23",
+                        "surface-container-highest": "#d7e4ec",
+                        "surface-container": "#e3f0f8",
+                        "on-tertiary-fixed": "#321300",
+                        "surface-bright": "#f4faff",
+                        "inverse-on-surface": "#e6f3fb",
+                        "inverse-surface": "#263238",
+                        "primary-fixed": "#d3e4ff",
+                        "secondary": "#48626e",
+                        "on-surface": "#111d23"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack_gap": "12px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "xs": "8px",
+                        "base": "4px",
+                        "md": "16px",
+                        "sm": "12px",
+                        "edge_margin": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["IBM Plex Sans"],
+                        "body-lg": ["IBM Plex Sans"],
+                        "headline-md": ["IBM Plex Sans"],
+                        "headline-lg": ["IBM Plex Sans"],
+                        "label-caps": ["IBM Plex Sans"],
+                        "status-label": ["IBM Plex Sans"],
+                        "body-md": ["IBM Plex Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "status-label": ["13px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom Tristate Switch Styles for Industrial Look */
+        .tristate-label {
+            transition: all 0.2s ease-in-out;
+        }
+        .tristate-radio:checked + .tristate-label.pass {
+            background-color: #008a00; /* Distinct Green */
+            color: white;
+            border-color: #008a00;
+        }
+        .tristate-radio:checked + .tristate-label.fail {
+            background-color: var(--color-error, #ba1a1a);
+            color: white;
+            border-color: var(--color-error, #ba1a1a);
+        }
+        .tristate-radio:checked + .tristate-label.na {
+            background-color: var(--color-surface-variant, #d7e4ec);
+            color: var(--color-on-surface-variant, #424750);
+            border-color: var(--color-outline, #727781);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface flex flex-col min-h-screen pb-[80px] pt-[48px]">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-edge_margin h-12 bg-surface border-b border-outline-variant flat no shadows">
+<button aria-label="Menu" class="flex items-center justify-center p-2 -ml-2 text-primary hover:bg-surface-container-high transition-colors active:scale-95 duration-100 rounded-full">
+<span class="material-symbols-outlined" data-icon="electric_bolt">electric_bolt</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary truncate flex-1 text-center px-4">Electrical Cabinet Inspection</h1>
+<button aria-label="More options" class="flex items-center justify-center p-2 -mr-2 text-primary hover:bg-surface-container-high transition-colors active:scale-95 duration-100 rounded-full">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-3xl mx-auto px-edge_margin py-lg overflow-y-auto">
+<!-- Checklist Form -->
+<form class="space-y-lg" id="checklist-form">
+<div class="mb-lg">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-xs">Checkliste</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Bitte prüfen Sie alle nachfolgenden Punkte gemäß den technischen Spezifikationen.</p>
+</div>
+<!-- Group: Elektrische Prüfungen -->
+<div class="space-y-stack_gap">
+<h3 class="font-label-caps text-label-caps text-primary uppercase border-b border-outline-variant pb-base mb-sm">Elektrische Prüfungen</h3>
+<!-- Item 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-md flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div class="flex-1">
+<p class="font-body-lg text-body-lg text-on-surface font-semibold">PE Niederohmigkeit</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Messung des Schutzleiterwiderstands</p>
+</div>
+<div class="flex bg-surface-container-low rounded-DEFAULT border border-outline-variant overflow-hidden h-12 shrink-0">
+<label class="flex-1 min-w-[60px] md:min-w-[80px] cursor-pointer relative">
+<input class="tristate-radio sr-only" name="item_1" type="radio" value="pass"/>
+<div class="tristate-label pass h-full w-full flex items-center justify-center border-r border-outline-variant bg-surface text-secondary hover:bg-surface-variant">
+<span class="material-symbols-outlined">check</span>
+</div>
+</label>
+<label class="flex-1 min-w-[60px] md:min-w-[80px] cursor-pointer relative">
+<input class="tristate-radio sr-only" name="item_1" type="radio" value="fail"/>
+<div class="tristate-label fail h-full w-full flex items-center justify-center border-r border-outline-variant bg-surface text-secondary hover:bg-surface-variant">
+<span class="material-symbols-outlined">close</span>
+</div>
+</label>
+<label class="flex-1 min-w-[60px] md:min-w-[80px] cursor-pointer relative">
+<input class="tristate-radio sr-only" name="item_1" type="radio" value="na"/>
+<div class="tristate-label na h-full w-full flex items-center justify-center bg-surface text-secondary hover:bg-surface-variant font-status-label text-status-label">
+                                N/A
+                            </div>
+</label>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-md flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div class="flex-1">
+<p class="font-body-lg text-body-lg text-on-surface font-semibold">Schutzmaßnahmen (RCD/FI)</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Auslösezeit und Auslösestrom prüfen</p>
+</div>
+<div class="flex bg-surface-container-low rounded-DEFAULT border border-outline-variant overflow-hidden h-12 shrink-0">
+<label class="flex-1 min-w-[60px] md:min-w-[80px] cursor-pointer relative">
+<input class="tristate-radio sr-only" name="item_2" type="radio" value="pass"/>
+<div class="tristate-label pass h-full w-full flex items-center justify-center border-r border-outline-variant bg-surface text-secondary hover:bg-surface-variant">
+<span class="material-symbols-outlined">check</span>
+</div>
+</label>
+<label class="flex-1 min-w-[60px] md:min-w-[80px] cursor-pointer relative">
+<input class="tristate-radio sr-only" name="item_2" type="radio" value="fail"/>
+<div class="tristate-label fail h-full w-full flex items-center justify-center border-r border-outline-variant bg-surface text-secondary hover:bg-surface-variant">
+<span class="material-symbols-outlined">close</span>
+</div>
+</label>
+<label class="flex-1 min-w-[60px] md:min-w-[80px] cursor-pointer relative">
+<input class="tristate-radio sr-only" name="item_2" type="radio" value="na"/>
+<div class="tristate-label na h-full w-full flex items-center justify-center bg-surface text-secondary hover:bg-surface-variant font-status-label text-status-label">
+                                N/A
+                            </div>
+</label>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-md flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div class="flex-1">
+<p class="font-body-lg text-body-lg text-on-surface font-semibold">Isolationswiderstand</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Messung zwischen aktiven Leitern und PE</p>
+</div>
+<div class="flex bg-surface-container-low rounded-DEFAULT border border-outline-variant overflow-hidden h-12 shrink-0">
+<label class="flex-1 min-w-[60px] md:min-w-[80px] cursor-pointer relative">
+<input class="tristate-radio sr-only" name="item_3" type="radio" value="pass"/>
+<div class="tristate-label pass h-full w-full flex items-center justify-center border-r border-outline-variant bg-surface text-secondary hover:bg-surface-variant">
+<span class="material-symbols-outlined">check</span>
+</div>
+</label>
+<label class="flex-1 min-w-[60px] md:min-w-[80px] cursor-pointer relative">
+<input class="tristate-radio sr-only" name="item_3" type="radio" value="fail"/>
+<div class="tristate-label fail h-full w-full flex items-center justify-center border-r border-outline-variant bg-surface text-secondary hover:bg-surface-variant">
+<span class="material-symbols-outlined">close</span>
+</div>
+</label>
+<label class="flex-1 min-w-[60px] md:min-w-[80px] cursor-pointer relative">
+<input class="tristate-radio sr-only" name="item_3" type="radio" value="na"/>
+<div class="tristate-label na h-full w-full flex items-center justify-center bg-surface text-secondary hover:bg-surface-variant font-status-label text-status-label">
+                                N/A
+                            </div>
+</label>
+</div>
+</div>
+</div>
+<!-- Group: Dokumentation & Beschriftung -->
+<div class="space-y-stack_gap pt-md">
+<h3 class="font-label-caps text-label-caps text-primary uppercase border-b border-outline-variant pb-base mb-sm">Dokumentation &amp; Beschriftung</h3>
+<!-- Item 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-md flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div class="flex-1">
+<p class="font-body-lg text-body-lg text-on-surface font-semibold">BMK (Betriebsmittelkennzeichnung)</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Vollständigkeit und Korrektheit der Labels</p>
+</div>
+<div class="flex bg-surface-container-low rounded-DEFAULT border border-outline-variant overflow-hidden h-12 shrink-0">
+<label class="flex-1 min-w-[60px] md:min-w-[80px] cursor-pointer relative">
+<input class="tristate-radio sr-only" name="item_4" type="radio" value="pass"/>
+<div class="tristate-label pass h-full w-full flex items-center justify-center border-r border-outline-variant bg-surface text-secondary hover:bg-surface-variant">
+<span class="material-symbols-outlined">check</span>
+</div>
+</label>
+<label class="flex-1 min-w-[60px] md:min-w-[80px] cursor-pointer relative">
+<input class="tristate-radio sr-only" name="item_4" type="radio" value="fail"/>
+<div class="tristate-label fail h-full w-full flex items-center justify-center border-r border-outline-variant bg-surface text-secondary hover:bg-surface-variant">
+<span class="material-symbols-outlined">close</span>
+</div>
+</label>
+<label class="flex-1 min-w-[60px] md:min-w-[80px] cursor-pointer relative">
+<input class="tristate-radio sr-only" name="item_4" type="radio" value="na"/>
+<div class="tristate-label na h-full w-full flex items-center justify-center bg-surface text-secondary hover:bg-surface-variant font-status-label text-status-label">
+                                N/A
+                            </div>
+</label>
+</div>
+</div>
+<!-- Item 5 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-md flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div class="flex-1">
+<p class="font-body-lg text-body-lg text-on-surface font-semibold">Schaltpläne vorhanden</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Aktuelle Version im Schrank hinterlegt</p>
+</div>
+<div class="flex bg-surface-container-low rounded-DEFAULT border border-outline-variant overflow-hidden h-12 shrink-0">
+<label class="flex-1 min-w-[60px] md:min-w-[80px] cursor-pointer relative">
+<input class="tristate-radio sr-only" name="item_5" type="radio" value="pass"/>
+<div class="tristate-label pass h-full w-full flex items-center justify-center border-r border-outline-variant bg-surface text-secondary hover:bg-surface-variant">
+<span class="material-symbols-outlined">check</span>
+</div>
+</label>
+<label class="flex-1 min-w-[60px] md:min-w-[80px] cursor-pointer relative">
+<input class="tristate-radio sr-only" name="item_5" type="radio" value="fail"/>
+<div class="tristate-label fail h-full w-full flex items-center justify-center border-r border-outline-variant bg-surface text-secondary hover:bg-surface-variant">
+<span class="material-symbols-outlined">close</span>
+</div>
+</label>
+<label class="flex-1 min-w-[60px] md:min-w-[80px] cursor-pointer relative">
+<input class="tristate-radio sr-only" name="item_5" type="radio" value="na"/>
+<div class="tristate-label na h-full w-full flex items-center justify-center bg-surface text-secondary hover:bg-surface-variant font-status-label text-status-label">
+                                N/A
+                            </div>
+</label>
+</div>
+</div>
+</div>
+<!-- Notes Field -->
+<div class="pt-lg pb-xl">
+<label class="block font-label-caps text-label-caps text-primary uppercase mb-xs" for="bemerkungsfeld">Bemerkungsfeld</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-sm font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent placeholder-on-surface-variant" id="bemerkungsfeld" name="bemerkungsfeld" placeholder="Zusätzliche Anmerkungen oder Mängelbeschreibung hier eintragen..." rows="4"></textarea>
+</div>
+<div class="flex justify-end pb-xl">
+<button class="bg-primary text-on-primary font-headline-md text-headline-md py-3 px-6 rounded-full hover:bg-primary-container hover:text-on-primary-container transition-colors active:scale-95 duration-100 flex items-center gap-2" type="button">
+<span class="material-symbols-outlined">save</span>
+                    Speichern &amp; Weiter
+                </button>
+</div>
+</form>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-edge_margin pb-safe h-16 bg-surface border-t border-outline-variant flat no shadows">
+<button aria-label="Dashboard" class="flex flex-col items-center justify-center text-on-secondary-container hover:bg-surface-container-low transition-colors active:opacity-80 transition-opacity w-16 h-14 rounded-xl">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-status-label text-status-label mt-1">Dashboard</span>
+</button>
+<button aria-current="page" aria-label="Checks" class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 hover:bg-surface-container-low transition-colors active:opacity-80 transition-opacity min-w-[64px]">
+<span class="material-symbols-outlined fill" data-icon="fact_check">fact_check</span>
+<span class="font-status-label text-status-label mt-1">Checks</span>
+</button>
+<button aria-label="Settings" class="flex flex-col items-center justify-center text-on-secondary-container hover:bg-surface-container-low transition-colors active:opacity-80 transition-opacity w-16 h-14 rounded-xl">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-status-label text-status-label mt-1">Settings</span>
+</button>
+</nav>
+</body></html>

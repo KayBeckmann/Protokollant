@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Electrical Cabinet Inspection - Finalization</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#4e6874",
+                        "on-tertiary": "#ffffff",
+                        "background": "#f4faff",
+                        "on-tertiary-fixed-variant": "#753400",
+                        "primary": "#003461",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb68b",
+                        "outline-variant": "#c2c6d1",
+                        "surface-container-low": "#e9f6fd",
+                        "surface": "#f4faff",
+                        "tertiary-fixed": "#ffdbc8",
+                        "on-secondary-fixed": "#021f29",
+                        "on-tertiary-container": "#ffa46a",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#424750",
+                        "inverse-primary": "#a3c9ff",
+                        "surface-container-high": "#ddeaf2",
+                        "tertiary-container": "#793701",
+                        "primary-fixed-dim": "#a3c9ff",
+                        "primary-container": "#004b87",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#004882",
+                        "on-primary-fixed": "#001c38",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#27609d",
+                        "secondary-container": "#cbe7f5",
+                        "surface-variant": "#d7e4ec",
+                        "outline": "#727781",
+                        "secondary-fixed-dim": "#afcbd8",
+                        "on-primary-container": "#8abcff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#304a55",
+                        "surface-dim": "#cfdce4",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#cbe7f5",
+                        "tertiary": "#572500",
+                        "on-background": "#111d23",
+                        "surface-container-highest": "#d7e4ec",
+                        "surface-container": "#e3f0f8",
+                        "on-tertiary-fixed": "#321300",
+                        "surface-bright": "#f4faff",
+                        "inverse-on-surface": "#e6f3fb",
+                        "inverse-surface": "#263238",
+                        "primary-fixed": "#d3e4ff",
+                        "secondary": "#48626e",
+                        "on-surface": "#111d23"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack_gap": "12px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "xs": "8px",
+                        "base": "4px",
+                        "md": "16px",
+                        "sm": "12px",
+                        "edge_margin": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["IBM Plex Sans"],
+                        "body-lg": ["IBM Plex Sans"],
+                        "headline-md": ["IBM Plex Sans"],
+                        "headline-lg": ["IBM Plex Sans"],
+                        "label-caps": ["IBM Plex Sans"],
+                        "status-label": ["IBM Plex Sans"],
+                        "body-md": ["IBM Plex Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "status-label": ["13px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased min-h-screen flex flex-col relative pb-[100px]">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-edge_margin h-12 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline text-primary dark:text-primary-fixed-dim transition-colors duration-100">
+<div class="flex items-center gap-xs">
+<span aria-hidden="true" class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">electric_bolt</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim tracking-tight">Electrical Cabinet Inspection</h1>
+</div>
+<button aria-label="More options" class="hover:bg-surface-container-high dark:hover:bg-surface-container-highest active:scale-95 duration-100 p-1 rounded-DEFAULT transition-colors flex items-center justify-center text-on-surface-variant dark:text-on-surface-variant">
+<span aria-hidden="true" class="material-symbols-outlined">more_vert</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="mt-12 w-full max-w-3xl mx-auto px-edge_margin pt-lg flex flex-col gap-lg">
+<!-- Header Section -->
+<div class="flex flex-col gap-base">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background">Abschlussprüfung</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Überprüfen Sie die Daten, legen Sie das Gesamtergebnis fest und signieren Sie das Protokoll.</p>
+</div>
+<!-- Summary Bento Grid -->
+<section aria-labelledby="summary-heading" class="flex flex-col gap-sm">
+<h3 class="font-label-caps text-label-caps text-secondary uppercase tracking-widest" id="summary-heading">Inspektionszusammenfassung</h3>
+<div class="grid grid-cols-2 gap-sm">
+<!-- Asset Card -->
+<div class="col-span-2 md:col-span-1 bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-md flex flex-col gap-base">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Anlage / ID</span>
+<div class="flex items-center justify-between">
+<span class="font-body-lg text-body-lg font-medium text-on-background tabular-nums">SC-4092-A</span>
+<span aria-hidden="true" class="material-symbols-outlined text-outline">qr_code_2</span>
+</div>
+</div>
+<!-- Inspector Card -->
+<div class="col-span-2 md:col-span-1 bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-md flex flex-col gap-base">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Prüfer</span>
+<div class="flex items-center gap-xs">
+<div class="w-6 h-6 rounded-full bg-surface-variant flex items-center justify-center text-primary font-status-label text-status-label">JD</div>
+<span class="font-body-lg text-body-lg text-on-background">J. Doe</span>
+</div>
+</div>
+<!-- Stats Card (Full width on mobile) -->
+<div class="col-span-2 bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-md flex items-center justify-between">
+<div class="flex flex-col gap-base">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Geprüfte Punkte</span>
+<div class="flex items-end gap-xs">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-background tabular-nums">42</span>
+<span class="font-body-md text-body-md text-secondary pb-1">Gesamt</span>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="flex flex-col items-end gap-base">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Kritisch</span>
+<span class="font-headline-md text-headline-md text-error tabular-nums">0</span>
+</div>
+<div class="w-[1px] h-full bg-outline-variant"></div>
+<div class="flex flex-col items-end gap-base">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Hinweise</span>
+<span class="font-headline-md text-headline-md text-secondary tabular-nums">2</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final Decision Toggle -->
+<section aria-labelledby="decision-heading" class="flex flex-col gap-sm mt-xs">
+<h3 class="font-label-caps text-label-caps text-secondary uppercase tracking-widest" id="decision-heading">Prüfung: Gesamtergebnis</h3>
+<div class="flex w-full rounded-DEFAULT border border-primary overflow-hidden shadow-sm h-12">
+<!-- Active State: Pass -->
+<button aria-pressed="true" class="flex-1 bg-primary text-on-primary flex items-center justify-center gap-xs transition-colors">
+<span aria-hidden="true" class="material-symbols-outlined icon-fill">check_circle</span>
+<span class="font-status-label text-status-label">Bestanden</span>
+</button>
+<!-- Inactive State: Fail -->
+<button aria-pressed="false" class="flex-1 bg-surface-container-lowest text-secondary hover:bg-surface-container-low flex items-center justify-center gap-xs border-l border-outline-variant transition-colors">
+<span aria-hidden="true" class="material-symbols-outlined">cancel</span>
+<span class="font-status-label text-status-label">Durchgefallen</span>
+</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 text-right">Anlage ist betriebsbereit.</p>
+</section>
+<!-- Signature Pad Area -->
+<section aria-labelledby="signature-heading" class="flex flex-col gap-sm mt-xs">
+<h3 class="font-label-caps text-label-caps text-secondary uppercase tracking-widest" id="signature-heading">Digitale Signatur</h3>
+<div class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT h-[200px] relative overflow-hidden flex flex-col">
+<!-- Toolbar -->
+<div class="w-full h-10 border-b border-outline-variant bg-surface flex items-center justify-between px-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Hier unterschreiben</span>
+<button class="font-label-caps text-label-caps text-primary hover:text-primary-container transition-colors focus:outline-none">
+                        Löschen
+                    </button>
+</div>
+<!-- Canvas Area -->
+<div class="flex-1 relative w-full h-full bg-[#fafbfc] cursor-crosshair">
+<!-- Simulated Vector Signature -->
+<svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 pointer-events-none opacity-80" fill="none" viewbox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+<path d="M 20 60 C 30 20, 50 10, 60 50 C 70 90, 80 80, 90 40 C 95 20, 105 15, 110 50 C 120 100, 140 30, 160 40 C 180 50, 170 70, 190 60 C 210 50, 220 20, 240 30 C 260 40, 270 60, 280 50" stroke="#003461" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+<path d="M 50 65 L 120 65" stroke="#003461" stroke-linecap="round" stroke-width="1.5"></path>
+</svg>
+</div>
+<!-- Timestamp -->
+<div class="absolute bottom-sm left-sm">
+<span class="font-label-caps text-label-caps text-secondary bg-surface-container-lowest/80 px-1 rounded-DEFAULT backdrop-blur-sm">
+                        2023-10-27 14:42:18 CET
+                    </span>
+</div>
+</div>
+</section>
+</main>
+<!-- Sticky Bottom Action Area -->
+<div class="fixed bottom-0 left-0 w-full bg-surface/95 backdrop-blur-md border-t border-outline-variant p-edge_margin pb-safe z-40 flex justify-center">
+<button class="w-full max-w-3xl h-12 bg-primary text-on-primary rounded-DEFAULT flex items-center justify-center gap-sm active:scale-[0.98] transition-transform shadow-sm hover:bg-primary-container focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+<span aria-hidden="true" class="material-symbols-outlined">picture_as_pdf</span>
+<span class="font-headline-md text-headline-md">PDF Protokoll Erzeugen</span>
+</button>
+</div>
+</body></html>
